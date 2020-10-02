@@ -28,6 +28,18 @@ jobs:
       - name: Npm run build
         run: npm run build
       
+      - name: copy index file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "index.html"
+          target: "dist/index.html"
+          
+      - name: copy style.css
+        uses: canastro/copy-file-action@master
+        with:
+          source: "style.css"
+          target: "dist/style.css"
+      
       - name: Deploy to github pages
         uses: crazy-max/ghaction-github-pages@v2.1.2
         with: 
