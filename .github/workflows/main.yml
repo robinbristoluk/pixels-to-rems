@@ -25,5 +25,12 @@ jobs:
         run: npm ci
       
       # Runs Build the files
-      - name: Npm run builf
+      - name: Npm run build
         run: npm run build
+      
+      - name: Deploy to github pages
+        uses: crazy-max/ghaction-github-pages@v2.1.2
+        with: 
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
