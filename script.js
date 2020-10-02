@@ -5,10 +5,15 @@ const baseFontSizeInput = document.getElementById('base-font-size');
 
     let lastCalculatedPixels = true;
 
-    const calculate = (calculator, isConvertingPixels) => {
+    const getFields = () => {
+        const dependantField = lastCalculatedPixels ? pixelsInput : remsInput;
+        const sourceField = lastCalculatedPixels ? remsInput : pixelsInput;
+        return {dependantField, sourceField};
+    }
 
-        const dependantField = isConvertingPixels ? remsInput : pixelsInput;
-        const sourceField = isConvertingPixels ? pixelsInput : remsInput;
+    const calculate = calculator => {
+
+        const {dependantField, sourceField} = getFields();
 
         const baseFontSize = parseFloat(baseFontSizeInput.value);
         const sourceSize = parseFloat(sourceField.value);
@@ -52,7 +57,7 @@ const baseFontSizeInput = document.getElementById('base-font-size');
         lastCalculatedPixels = false;
         arrowSpan.classList.add('arrow--right');
 
-        calculate((base, target) => target / base, true);
+        calculate((base, target) => target / base);
     }
 
     const calculatePixels = () => {
@@ -60,9 +65,23 @@ const baseFontSizeInput = document.getElementById('base-font-size');
         lastCalculatedPixels = true;
         arrowSpan.classList.remove('arrow--right');
 
-        calculate((base, target) => target * base, false);
+        calculate((base, target) => target * base);
+    }
+
+    const swapValues = () => {
+
+        lastCalculatedPixels = !lastCalculatedPixels;
+
+        const { sourceField, dependantField } = getFields();
+
+        sourceField.value = dependantField.value;
+
+        lastCalculatedPixels ? 
+            calculatePixels() :
+            calculateRems();
     }
 
     baseFontSizeInput.addEventListener('input', baseFontSizeChanged);
     pixelsInput.addEventListener('input', calculateRems);
     remsInput.addEventListener('input', calculatePixels);
+    arrowSpan.addEventListener('click', swapValues);
