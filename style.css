@@ -118,3 +118,24 @@ input#base-font-size {
     flex-direction: column;
     justify-content: center;
 }
+
+.alerts {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.alert {
+    margin-bottom: 20px;
+    background-color: #666;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.alert--failed {
+    color: red;
+    border-color: red;
+    background-color: pink;;
+}

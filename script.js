@@ -2,6 +2,7 @@ const baseFontSizeInput = document.getElementById('base-font-size');
     const pixelsInput = document.getElementById('pixels');
     const remsInput = document.getElementById('rems');
     const arrowSpan = document.querySelector('.arrow');
+    const alerts = document.querySelector('.alerts');
 
     let lastCalculatedPixels = true;
 
@@ -81,15 +82,37 @@ const baseFontSizeInput = document.getElementById('base-font-size');
             calculateRems();
     }
 
+    const showAlert = (msg, success) => {
+        const alert = document.createElement('div');
+        alert.classList.add('alert');
+        alert.textContent = msg;
+
+        if (!success) {
+            alert.classList.add('alert--failed');
+        }
+
+        alerts.appendChild(alert);
+
+        setTimeout(() => {
+            alerts.removeChild(alert);
+        }, 2000);
+    };
+
     const copyContents = e => {
         const input = e.target;
         // grab the value so we can reset if needed
         const hasContent = input.value !== '';
         if (!hasContent) { input.value = ' '; }
         input.select();
-        document.execCommand('copy');
+        const success = document.execCommand('copy');
         if (!hasContent) { input.value = ''; }
         input.setSelectionRange(0,0);     
+
+        if (success) {
+            showAlert('Copied to clipboard!', true);
+        } else {
+            showAlert('Unable to copy!', false);
+        }
     }
 
     baseFontSizeInput.addEventListener('input', baseFontSizeChanged);
