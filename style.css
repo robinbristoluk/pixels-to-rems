@@ -3,6 +3,14 @@
 
 html { font-family: arial; color: #666; }
 
+p {
+    color: #fff; 
+    font-size: 24px; 
+    line-height: 30px; 
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+    letter-spacing: 2px;
+}
+
 .wrapper {
     display: flex;
     align-items: center;

@@ -81,7 +81,21 @@ const baseFontSizeInput = document.getElementById('base-font-size');
             calculateRems();
     }
 
+    const copyContents = e => {
+        const input = e.target;
+        // grab the value so we can reset if needed
+        const hasContent = input.value !== '';
+        if (!hasContent) { input.value = ' '; }
+        input.select();
+        document.execCommand('copy');
+        if (!hasContent) { input.value = ''; }
+        input.setSelectionRange(0,0);     
+    }
+
     baseFontSizeInput.addEventListener('input', baseFontSizeChanged);
+    baseFontSizeInput.addEventListener('dblclick', copyContents);
     pixelsInput.addEventListener('input', calculateRems);
+    pixelsInput.addEventListener('dblclick', copyContents);
     remsInput.addEventListener('input', calculatePixels);
+    remsInput.addEventListener('dblclick', copyContents);
     arrowSpan.addEventListener('click', swapValues);
