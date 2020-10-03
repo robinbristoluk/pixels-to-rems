@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixels Rems Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="wrapper">
+            <div class="form-field">
+                <label for='base-font-size'>Base font size</label>
+                <input type="text" id='base-font-size' value='16' />
+            </div>
+        </div>
+        <div class="wrapper wrapper--main">
+            <div class="form-field">
+                    <label for='pixels'>Pixels</label>
+                    <input type="text" id='pixels' />   
+            </div>
+            <span title='Swap values' class='arrow arrow--right'></span>
+            <div class="form-field">
+                    <label for='rems'>Rems</label>
+                    <input type="text" id='rems' /> 
+            </div>
+        </div>
+        <p class="wrapper">
+            Click the arrows to change the type of the target value.<br/>Double click any of the inputs to copy its value to the clipboard.
+        </p>
+    </div>
+    <div class="alerts"></div>
+</body>
+</html>
